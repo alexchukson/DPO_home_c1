@@ -2,7 +2,7 @@
 
 void main(){
     printf(
-"	 Let's\n\
+"    Let's\n\
        go\n\
          to walk\n");
     exit(0);
