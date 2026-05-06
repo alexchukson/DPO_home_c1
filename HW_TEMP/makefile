@@ -1,10 +1,10 @@
 # Переменные
-CC = cl.exe
-CFLAGS = /nologo /W4 /EHsc
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
 TARGET = temp_app
 SRCS = temp_api.c
 
-OBJS = $(SRCS:.c=.obj)
+OBJS = $(SRCS:.c=.o)
 
 # Header files
 HEADERS = temp_api.h
@@ -12,11 +12,19 @@ HEADERS = temp_api.h
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(OBJS) /Fe:$(TARGET)
+	$(CC) $(OBJS) -o $(TARGET)
 
-# Compile C files - works for both debug and release
-%.obj: %.c $(HEADERS)
-	$(CC) $(CFLAGS) /c $< /Fo$@
+# Compile C files
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# temp_api.obj: temp_api.c $(HEADERS)
-# 	$(CC) $(CFLAGS) /c $< /Fo$@
+# Clean rule
+clean:
+	rm -f $(OBJS) $(TARGET)
+
+# Run rule
+run: $(TARGET)
+	./$(TARGET)
+
+# Phony targets
+.PHONY: all clean run

@@ -2,15 +2,18 @@
 #include <stdint.h>
 #include <string.h>
 struct sensor {
-    uint8_t day;
-    uint8_t month;
-    uint16_t year;
-    int8_t t;
+    int day;
+    int month;
+    int year;
+    int t;
 };
 
 struct sensor_array{
     struct sensor* data;
     uint32_t size;
+    int min_t;
+    int max_t;
+    int avg_t;
 };
 
 struct sensor_array read_dataset(const char* fname);

@@ -1,0 +1,11 @@
+# 1. Запускаем скрипт настройки окружения Visual Studio
+cmd /c "`"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat`""
+
+# 2. Добавляем nmake в PATH
+$env:Path += ";C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.37.32822\bin\Hostx64\x64"
+
+# 3. Проверяем, что cl.exe теперь видит stdio.h
+where cl
+
+# 4. Запускаем сборку
+nmake -f Makefile
